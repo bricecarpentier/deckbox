@@ -4,7 +4,7 @@ include <./vendor/Round-Anything/polyround.scad>;
 CARD_DIMS = [ 66.5, 93.4, .75 ]; // [.1, .1, .01]
 
 // Number of cards you want to fit in the box
-CARD_COUNT = 60; // 1
+CARD_COUNT = 60; // [10:100]
 
 // The thickness of the box
 BOX_THICKNESS = 2; // .5
