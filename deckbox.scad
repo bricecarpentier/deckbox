@@ -35,7 +35,8 @@ TOLERANCE = 0.1; // .01
 fn = 60;
 $fn = fn;
 
-INNER_BOX_DIMS = [ CARD_DIMS.x, CARD_DIMS.z *CARD_COUNT, CARD_DIMS.y ];
+
+INNER_BOX_DIMS = [ CARD_DIMS.x, CARD_DIMS.z * CARD_COUNT, CARD_DIMS.y ];
 OUTER_BOX_DIMS = [
   INNER_BOX_DIMS.x + 4 * BOX_THICKNESS, INNER_BOX_DIMS.y + 4 * BOX_THICKNESS,
   INNER_BOX_DIMS.z + 4 *
@@ -46,9 +47,9 @@ module scene() {
   lid_x_offset = PART == 0 ? OUTER_BOX_DIMS.x + 20 : 0;
   union() {
     if (PART == 0 || PART == 1)
-      box();
+      box(current_color = COLOR);
     if (PART == 0 || PART == 2)
-      translate([ lid_x_offset, 0, 0 ]) lid();
+      translate([ lid_x_offset, 0, 0 ]) lid(current_color = COLOR);
   }
 }
 
