@@ -46,7 +46,7 @@ module side(flip = false, tolerance = 0) {
     translate([
       -lid_extrusion.x / 2, -lid_extrusion.y / 2,
       -lid_extrusion.z / 2 - BOX_THICKNESS * 2
-    ]) #cube([ lid_extrusion.x, lid_extrusion.y, lid_extrusion.z ],
+    ]) cube([ lid_extrusion.x, lid_extrusion.y, lid_extrusion.z ],
              center = false);
   }
 }
@@ -84,7 +84,7 @@ module thumb_bit(dims = [ 15, 25, 200 ], radius = 4) {
     }
   }
 
-  translate([ 0, -dims.z / 2, -dims.y / 2 ]) #rotate([ -90, 0, 0 ])
+  translate([ 0, -dims.z / 2, -dims.y / 2 ]) rotate([ -90, 0, 0 ])
       linear_extrude(height = dims.z)
           translate([ -dims.x / 2, -dims.y / 2 ]) union() {
     square([ dims.x, dims.y - radius ]);
