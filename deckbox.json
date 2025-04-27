@@ -1,0 +1,14 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "New set 1": {
+            "BOX_RADIUS": "2",
+            "BOX_THICKNESS": "2",
+            "CARD_COUNT": "60",
+            "CARD_DIMS": "[66.5, 93.4, 0.75]",
+            "COLOR": "0",
+            "TOLERANCE": "0.10000000000000001",
+            "fn": "60"
+        }
+    }
+}
