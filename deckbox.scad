@@ -24,7 +24,7 @@ BOX_THICKNESS = 2; // .5
 BOX_RADIUS = 2; // 1
 
 /* [Color dimensions] */
-COLOR_RING_THICKNESS = 10; // 2
+COLOR_RING_THICKNESS = 5; // 2
 
 /* [Printer settings] */
 
