@@ -46,9 +46,9 @@ OUTER_BOX_DIMS = [
 module scene() {
   lid_x_offset = PART == 0 ? OUTER_BOX_DIMS.x + 20 : 0;
   union() {
-    if (PART == 0 || PART == 1)
+    if (PART == "all" || PART == "box")
       box(current_color = COLOR);
-    if (PART == 0 || PART == 2)
+    if (PART == "all" || PART == "lid")
       translate([ lid_x_offset, 0, 0 ]) lid(current_color = COLOR);
   }
 }
