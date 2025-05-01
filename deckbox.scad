@@ -2,8 +2,8 @@ include <./box.scad>;
 include <./lid.scad>;
 
 /* [General] */
-// Can be a number between 0 and 2, 0 means "all", 1 means "box", 2 means "lid"
-PART = 0;
+// Can be "all", "box", or "lid"
+PART = "all";
 // Can be a number between 0 and 3, 0 means "all"
 COLOR = 0; // 1
 
@@ -44,7 +44,7 @@ OUTER_BOX_DIMS = [
 ];
 
 module scene() {
-  lid_x_offset = PART == 0 ? OUTER_BOX_DIMS.x + 20 : 0;
+  lid_x_offset = PART == "all" ? OUTER_BOX_DIMS.x + 20 : 0;
   union() {
     if (PART == "all" || PART == "box")
       box(current_color = COLOR);

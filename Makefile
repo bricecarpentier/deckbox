@@ -1,22 +1,16 @@
 all: box lid
 	
-CC=openscad -m make --backend Manifold deckbox.scad
+CMD=openscad -m make --backend Manifold deckbox.scad
+
+extract_part = $(basename $(subst -,.,$(basename $(notdir $(1)))))
+extract_color = $(subst .,,$(suffix $(subst -,.,$(basename $(notdir $(1))))))
     
 box: dist/box-1.stl dist/box-2.stl dist/box-3.stl
 
 lid: dist/lid-1.stl dist/lid-2.stl
-	
-dist/box-1.stl: deckbox.scad | output_dirs
-		$(CC) -o dist/box-1.stl -D PART="box" -D COLOR=1
-dist/box-2.stl: deckbox.scad | output_dirs
-		$(CC) -o dist/box-2.stl -D PART="box" -D COLOR=2
-dist/box-3.stl: deckbox.scad | output_dirs
-		$(CC) -o dist/box-3.stl -D PART="box" -D COLOR=3
 
-dist/lid-1.stl: deckbox.scad | output_dirs
-		$(CC) -o dist/lid-1.stl -D PART="lid" -D COLOR=1
-dist/lid-2.stl: deckbox.scad | output_dirs
-		$(CC) -o dist/lid-2.stl -D PART="lid" -D COLOR=2
+dist/%.stl: deckbox.scad | output_dirs
+	$(CMD) -o $@ -D 'PART="$(call extract_part,$@)"' -D COLOR=$(call extract_color,$@)
 
 output_dirs: dist deps
 
