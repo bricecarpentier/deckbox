@@ -14,12 +14,16 @@ CARD_DIMS = [ 66.5, 93.4, .75 ]; // [.1, .1, .01]
 
 // Number of cards you want to fit in the box
 CARD_COUNT = 60; // [10:100]
-
-// The thickness of the box
-BOX_THICKNESS = 2; // .5
+BOX_THICKNESS = 1.2; // .5
 
 // Radius of the box's corners
 BOX_RADIUS = 2; // 1
+
+/* [Area dimensions] */
+
+// Card count for each separated area, 0 will not separate the area
+AREAS = [ 0, 0, 0 ]; // [1,1,1]
+AREA_SEPARATOR_THICKNESS = 2; // .2
 
 /* [Color dimensions] */
 COLOR_RING_THICKNESS = 5; // 2
@@ -33,10 +37,15 @@ TOLERANCE = 0.1; // .01
 fn = 60;
 $fn = fn;
 
-
-INNER_BOX_DIMS = [ CARD_DIMS.x, CARD_DIMS.z * CARD_COUNT, CARD_DIMS.y ];
+NON_EMPTY_AREAS = [for (a = AREAS) if (a > 0) a];
+NON_EMPTY_AREAS_COUNT = len(NON_EMPTY_AREAS);
+INNER_BOX_DIMS = [
+  CARD_DIMS.x, CARD_DIMS.z *CARD_COUNT + NON_EMPTY_AREAS_COUNT *AREA_SEPARATOR_THICKNESS,
+  CARD_DIMS.y
+];
 OUTER_BOX_DIMS = [
-  INNER_BOX_DIMS.x + 4 * BOX_THICKNESS, INNER_BOX_DIMS.y + 4 * BOX_THICKNESS,
+  INNER_BOX_DIMS.x + 4 * BOX_THICKNESS,
+  INNER_BOX_DIMS.y + (4 + NON_EMPTY_AREAS_COUNT) * AREA_SEPARATOR_THICKNESS,
   INNER_BOX_DIMS.z + 4 *
   BOX_THICKNESS
 ];
@@ -45,7 +54,7 @@ module scene() {
   lid_x_offset = PART == "all" ? OUTER_BOX_DIMS.x + 20 : 0;
   union() {
     if (PART == "all" || PART == "box")
-      box(current_color = COLOR);
+      box(current_color = COLOR, areas = NON_EMPTY_AREAS);
     if (PART == "all" || PART == "lid")
       translate([ lid_x_offset, 0, 0 ]) lid(current_color = COLOR);
   }

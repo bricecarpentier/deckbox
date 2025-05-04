@@ -26,6 +26,10 @@ module side(flip = false, tolerance = 0) {
   }
 }
 
+module separator() {
+  translate([-INNER_BOX_DIMS.x / 2, -AREA_SEPARATOR_THICKNESS / 2]) linear_extrude(height = INNER_BOX_DIMS.z) square([INNER_BOX_DIMS.x, AREA_SEPARATOR_THICKNESS]);
+}
+
 module internal() {
   outer_dims = [
     INNER_BOX_DIMS.x + BOX_THICKNESS * 2, INNER_BOX_DIMS.y + BOX_THICKNESS * 2,
