@@ -2,10 +2,8 @@ include <./box.scad>;
 include <./lid.scad>;
 
 /* [General] */
-// Can be "all", "box", or "lid"
-PART = "all";
-// Can be a number between 0 and 3, 0 means "all"
-COLOR = 0; // 1
+PART = "all"; // [all:Both, box:Just the box, lid: Just the lid]
+COLOR = 0;    // [0:Everything, 1:Below the colored ring, 2:The colored ring, 3:Above the colored ring]
 
 /* [Card dimensions] */
 
