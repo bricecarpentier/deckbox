@@ -1,6 +1,5 @@
 include <./lib/color-mask.scad>;
 include <./lib/parts.scad>
-include <./vendor/Round-Anything/polyround.scad>;
 
 module _box() {
   difference() {
