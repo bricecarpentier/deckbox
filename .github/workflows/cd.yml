@@ -7,12 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
             submodules: recursive
-      - name: Setup OpenSCAD
-        run: sudo snap install openscad-nightly
-      - name: Build
-        run: make all
+      - run: sudo snap install openscad-nightly
+      - run: make all
+      - uses: actions/upload-artifact@v4
+        with:
+            name: deckbox
+            path: dist
     
