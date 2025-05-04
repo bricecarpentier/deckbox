@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup OpenSCAD
-        run: snap install openscad
+        run: sudo snap install openscad
       - name: Build
         run: make all
     
