@@ -1,6 +1,10 @@
 all: box lid
 	
-CMD=openscad -m make --backend Manifold deckbox.scad
+NIGHTLY_BIN = $(shell which openscad-nightly)
+NON_NIGHTLYBIN = $(shell which openscad)
+BIN = $(firstword $(NIGHTLY_BIN) $(NON_NIGHTLYBIN))
+
+CMD=$(BIN) -m make --backend Manifold deckbox.scad
 
 extract_part = $(basename $(subst -,.,$(basename $(notdir $(1)))))
 extract_color = $(subst .,,$(suffix $(subst -,.,$(basename $(notdir $(1))))))
